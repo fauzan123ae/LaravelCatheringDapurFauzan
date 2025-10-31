@@ -41,6 +41,17 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
+    public function show($id)
+    {
+        $product = product::find($id);
+        if (!$product) {
+            return response()-> json(['pesan'=>'product tidak tersedia']);
+           
+        }
+        return response()->json($product);
+
+    }
+
     public function update(Request $request, $id)
 {
     $product = Product::find($id);
